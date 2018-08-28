@@ -17,17 +17,17 @@
    <h2>Chart 01 - Speed</h2>
    <div id="chart_01"></div>
    <script>
-      var width = 890, height = 450;
+      var width = 600, height = 400, margin = 50;
 
       var chart_01 = d3.select("#chart_01")
          .append("svg")
          .attr("width", width)
          .attr("height", height);
 
-      var g = chart_01.append("g").attr("transform", "translate(50, 20)");
+      var g = chart_01.append("g").attr("transform", "translate(50, 50)");
 
       var x = d3.scaleBand()
-         .rangeRound([0, width])
+         .rangeRound([0, width - margin - margin])
          .padding(0.1);
 
       var y = d3.scaleLinear()
@@ -42,7 +42,7 @@
          })]);
 
          g.append("g")
-            .attr("transform", "translate(0," + 300 + ")")
+            .attr("transform", "translate(0," + (height - margin - margin) + ")")
             .call(d3.axisBottom(x))
 
          g.append("g")
@@ -71,7 +71,6 @@
                return height - y(Number(d.Speed));
             });
       });
-
    </script>
 </body>
 </html>
