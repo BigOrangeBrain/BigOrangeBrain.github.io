@@ -85,6 +85,12 @@
             .attr("y", function (d) {
                return y(Number(d.Speed));
             })
+            .attr("height", 0)
+            .transition()
+            .duration(200)
+            .delay(function (d, i) {
+               return i * 50;
+            })
             .attr("width", x.bandwidth())
             .attr("height", function (d) {
                return sub_height - y(Number(d.Speed));
