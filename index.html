@@ -13,11 +13,11 @@
       }
 
       .bar {
-         fill: #ff6a00;
+         fill: steelblue;
       }
 
          .bar:hover {
-            fill: #403fd9;
+            fill: brown;
          }
    </style>
 </head>
@@ -58,7 +58,7 @@
             .call(d3.axisBottom(x))
             .append("text")
             .attr("fill", "#ffffff")
-            .attr("transform", "translate(" + (sub_width / 2) + " ," + (sub_height) + ")")
+            .attr("transform", "translate(" + (sub_width / 2) + " ," + 40 + ")")
             .style("text-anchor", "middle")
             .text("My X label");
 
