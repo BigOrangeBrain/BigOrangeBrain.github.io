@@ -8,6 +8,10 @@
          background-color: black; color: white;
       }
 
+      #chart_01 {
+         border: 1px solid white;
+      }
+
       .bar {
          fill: steelblue;
       }
@@ -52,6 +56,10 @@
          g.append("g")
             .attr("transform", "translate(0," + sub_height + ")")
             .call(d3.axisBottom(x))
+            .append("text")
+            .attr("transform", "translate(" + (width / 2) + " ," + (height + margin.top + 20) + ")")
+            .style("text-anchor", "middle")
+            .text("My X label");
 
          g.append("g")
             .call(d3.axisLeft(y))
@@ -59,9 +67,9 @@
             .attr("fill", "#ffffff")
             .attr("transform", "rotate(-90)")
             .attr("y", 6)
-            .attr("dy", "0.71em")
-            .attr("text-anchor", "end")
-            .text("My Sample");
+            .attr("dy", "1em")
+            .attr("text-anchor", "middle")
+            .text("My Y label");
 
          g.selectAll(".bar")
             .data(data)
