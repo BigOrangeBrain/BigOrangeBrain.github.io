@@ -43,7 +43,7 @@
          .padding(0.1);
 
       var y = d3.scaleLinear()
-         .rangeRound([0, sub_height]);
+         .rangeRound([sub_height, 0]);
 
       d3.csv("brain.csv").then(function (data) {
          x.domain(data.map(function (d) {
