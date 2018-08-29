@@ -67,7 +67,9 @@
             .append("text")
             .attr("fill", "#ffffff")
             .attr("transform", "rotate(-90)")
-            .attr("transform", "translate(" + -(sub_height / 2) + "," + -margin.left +")")
+            //.attr("transform", "translate(" + -(sub_height / 2) + "," + -margin.left +")")
+            .attr("y", -margin.left)
+            .attr("x", -(sub_height / 2))
             .attr("dy", "1em")
             .attr("text-anchor", "middle")
             .text("My Y label");
