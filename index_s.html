@@ -3,6 +3,11 @@
 <head>
    <script src="https://d3js.org/d3.v5.min.js"></script>
    <style>
+
+      body {
+         background-color: black; color: white;
+      }
+
       .bar {
          fill: steelblue;
       }
@@ -14,24 +19,27 @@
 </head>
 <body>
    <h1>Big Orange Brain</h1>
-   <h2>Chart 01 - Speed</h2>
+   <h2>Chart 01 - Sample</h2>
    <div id="chart_01"></div>
    <script>
-      var width = 600, height = 400, margin = 50;
+      var width = 600, height = 400;
+      var margin = {top: 20, right: 20, bottom: 30, left: 50};
+      var sub_width = width - margin.left - margin.right;
+      var sub_height = height - margin.top - margin.bottom;
 
       var chart_01 = d3.select("#chart_01")
          .append("svg")
          .attr("width", width)
          .attr("height", height);
 
-      var g = chart_01.append("g").attr("transform", "translate(50, 50)");
+      var g = chart_01.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
       var x = d3.scaleBand()
-         .rangeRound([0, width - margin - margin])
+         .rangeRound([0, sub_width])
          .padding(0.1);
 
       var y = d3.scaleLinear()
-         .rangeRound([height, 0]);
+         .rangeRound([sub_height, 0]);
 
       d3.tsv("morley.tsv").then(function (data) {
          x.domain(data.map(function (d) {
@@ -42,7 +50,7 @@
          })]);
 
          g.append("g")
-            .attr("transform", "translate(0," + (height - margin - margin) + ")")
+            .attr("transform", "translate(0," + sub_height + ")")
             .call(d3.axisBottom(x))
 
          g.append("g")
@@ -53,7 +61,7 @@
             .attr("y", 6)
             .attr("dy", "0.71em")
             .attr("text-anchor", "end")
-            .text("My Speed");
+            .text("My Sample");
 
          g.selectAll(".bar")
             .data(data)
