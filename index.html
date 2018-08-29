@@ -58,7 +58,7 @@
             .call(d3.axisBottom(x))
             .append("text")
             .attr("fill", "#ffffff")
-            .attr("transform", "translate(" + sub_width / 2 + ", 30)")
+            .attr("transform", "translate(" + sub_width / 2 + ", 26)")
             .style("text-anchor", "middle")
             .text("My X label");
 
@@ -67,7 +67,7 @@
             .append("text")
             .attr("fill", "#ffffff")
             .attr("transform", "rotate(-90)")
-            .attr("transform", "translate(" + -sub_height / 2 + "," + -margin.left +")")
+            .attr("transform", "translate(" + -(sub_height / 2) + "," + -margin.left +")")
             .attr("dy", "1em")
             .attr("text-anchor", "middle")
             .text("My Y label");
