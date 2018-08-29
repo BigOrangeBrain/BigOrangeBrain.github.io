@@ -57,7 +57,8 @@
             .attr("transform", "translate(0," + sub_height + ")")
             .call(d3.axisBottom(x))
             .append("text")
-            .attr("transform", "translate(" + (width / 2) + " ," + (height + margin.top + 20) + ")")
+            .attr("fill", "#ffffff")
+            .attr("transform", "translate(" + (sub_width / 2) + " ," + (sub_height + margin.top + 20) + ")")
             .style("text-anchor", "middle")
             .text("My X label");
 
