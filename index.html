@@ -12,6 +12,11 @@
          border: 1px solid white;
       }
 
+      .ano {
+         color: white;
+         font-size: 14px;
+      }
+
       .bar {
          fill: steelblue;
       }
@@ -41,7 +46,8 @@
       g.append("g")
          .attr("transform", "translate(50, 5)")
          .append("text")
-         .attr("id", "chart_01_comment");
+         .attr("id", "chart_01_comment")
+         .attr("class", "ana");
 
       var x = d3.scaleBand()
          .rangeRound([0, sub_width])
@@ -102,7 +108,7 @@
             })
             .on("mouseover", function(d) {
                d3.select("#chart_01_comment")
-                  .text("My data: " + d.Speed);
+                  .text("My data: " + y(Number(d.Speed)));
             });
       });
    </script>
