@@ -110,6 +110,14 @@
                return y(Number(d.Speed));
             })
             .attr("height", function (d) {
+               return 0;
+            })
+            .transition()
+            .duration(1000)
+            .delay(function (d, i) {
+               return i * 100;
+            })
+            .attr("height", function (d) {
                return sub_height - y(Number(d.Speed));
             });
       });
