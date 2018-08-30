@@ -99,18 +99,18 @@
             })
             .attr("width", x.bandwidth())
             .attr("y", function(d) {
-               return sub_height;
-            })
-            .attr("height", function (d) {
                return sub_height - y(Number(d.Speed));
             })
             .transition()
             .duration(1000)
             .delay(function (d, i) {
-               return i * 50;
+               return i * 100;
             })
             .attr("y", function (d) {
                return y(Number(d.Speed));
+            })
+            .attr("height", function (d) {
+               return sub_height - y(Number(d.Speed));
             });
       });
    </script>
