@@ -13,8 +13,7 @@
       }
 
       .annotation {
-         color: white;
-         font-size: 14px;
+         fill: white;
       }
 
       .bar {
@@ -94,6 +93,14 @@
                return x(d.Run);
             })
             .attr("y", function(d) {
+               return sub_height - y(Number(d.Speed));
+            })
+            .transition()
+            .duration(1000)
+            .delay(function (d, i) {
+               return i * 50;
+            })
+            .attr("y", function (d) {
                return y(Number(d.Speed));
             })
             .attr("width", x.bandwidth())
@@ -102,7 +109,7 @@
             })
             .on("mouseover", function(d) {
                d3.select("#chart_01_comment")
-                  .text("My data: " + y(Number(d.Speed)));
+                  .text("My data: " + Number(d.Speed));
             });
       });
    </script>
