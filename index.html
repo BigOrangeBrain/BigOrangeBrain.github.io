@@ -38,6 +38,11 @@
 
       var g = chart_01.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+      g.append("g")
+         .attr("transform", "translate(50, 5)")
+         .append("text")
+         .attr("id", "chart_01_comment");
+
       var x = d3.scaleBand()
          .rangeRound([0, sub_width])
          .padding(0.1);
@@ -79,21 +84,25 @@
             .enter()
             .append("rect")
             .attr("class", "bar")
-            .attr("x", function (d) {
+            .attr("x", function(d) {
                return x(d.Run);
             })
             .attr("y", 0)
             .transition()
             .duration(1000)
-            .delay(function (d, i) {
+            .delay(function(d, i) {
                return i * 50;
             })
-            .attr("y", function (d) {
+            .attr("y", function(d) {
                return y(Number(d.Speed));
             })
             .attr("width", x.bandwidth())
-            .attr("height", function (d) {
+            .attr("height", function(d) {
                return sub_height - y(Number(d.Speed));
+            })
+            .on("mouseover", function(d) {
+               d3.select("#chart_01_comment")
+                  .text("My data: " + d.Speed);
             });
       });
    </script>
