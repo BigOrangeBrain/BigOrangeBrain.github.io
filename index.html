@@ -101,14 +101,6 @@
             .attr("y", function(d) {
                return 0;
             })
-            .transition()
-            .duration(1000)
-            .delay(function (d, i) {
-               return i * 100;
-            })
-            .attr("y", function (d) {
-               return y(Number(d.Speed));
-            })
             .attr("height", function (d) {
                return 0;
             })
@@ -116,6 +108,9 @@
             .duration(1000)
             .delay(function (d, i) {
                return i * 100;
+            })
+            .attr("y", function (d) {
+               return y(Number(d.Speed));
             })
             .attr("height", function (d) {
                return sub_height - y(Number(d.Speed));
