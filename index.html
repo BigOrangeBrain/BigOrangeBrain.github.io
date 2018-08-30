@@ -12,7 +12,7 @@
          border: 1px solid white;
       }
 
-      .ano {
+      .annotation {
          color: white;
          font-size: 14px;
       }
@@ -47,7 +47,7 @@
          .attr("transform", "translate(50, 5)")
          .append("text")
          .attr("id", "chart_01_comment")
-         .attr("class", "ana");
+         .attr("class", "annotation");
 
       var x = d3.scaleBand()
          .rangeRound([0, sub_width])
@@ -92,12 +92,6 @@
             .attr("class", "bar")
             .attr("x", function(d) {
                return x(d.Run);
-            })
-            .attr("y", 0)
-            .transition()
-            .duration(1000)
-            .delay(function(d, i) {
-               return i * 50;
             })
             .attr("y", function(d) {
                return y(Number(d.Speed));
