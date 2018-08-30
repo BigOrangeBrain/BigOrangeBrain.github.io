@@ -46,7 +46,8 @@
          .attr("transform", "translate(50, 5)")
          .append("text")
          .attr("id", "chart_01_comment")
-         .attr("class", "annotation");
+         .attr("class", "annotation")
+         .text("Hello");
 
       var x = d3.scaleBand()
          .rangeRound([0, sub_width])
@@ -88,28 +89,28 @@
             .data(data)
             .enter()
             .append("rect")
+            .on("mouseover", function (d) {
+               d3.select("#chart_01_comment")
+                  .text("My data: " + Number(d.Speed));
+            })
             .attr("class", "bar")
             .attr("x", function(d) {
                return x(d.Run);
             })
+            .attr("width", x.bandwidth())
             .attr("y", function(d) {
+               return sub_height - y(Number(d.Speed));
+            })
+            .attr("height", function (d) {
                return sub_height - y(Number(d.Speed));
             })
             .transition()
             .duration(1000)
             .delay(function (d, i) {
-               return i * 50;
+               return i;
             })
             .attr("y", function (d) {
                return y(Number(d.Speed));
-            })
-            .attr("width", x.bandwidth())
-            .attr("height", function(d) {
-               return sub_height - y(Number(d.Speed));
-            })
-            .on("mouseover", function(d) {
-               d3.select("#chart_01_comment")
-                  .text("My data: " + Number(d.Speed));
             });
       });
    </script>
