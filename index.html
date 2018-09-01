@@ -2,10 +2,88 @@
 <html>
 <head>
    <script src="https://d3js.org/d3.v5.min.js"></script>
+   <script>
+      function govhack() {
+         var width = 600, height = 400;
+         var margin = { top: 20, right: 20, bottom: 30, left: 50 };
+         var sub_width = width - margin.left - margin.right;
+         var sub_height = height - margin.top - margin.bottom;
+
+         var chart_01 = d3.select("#chart_01")
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height);
+
+         var g = chart_01.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+         g.append("g")
+            .attr("transform", "translate(50, 5)")
+            .append("text")
+            .attr("id", "chart_01_comment")
+            .attr("class", "annotation")
+            .text("Hello");
+
+         var x = d3.scaleBand()
+            .rangeRound([0, sub_width])
+            .padding(0.1);
+
+         var y = d3.scaleLinear()
+            .rangeRound([sub_height, 0]);
+
+         d3.csv("brain.csv").then(function(data) {
+            x.domain(data.map(function(d) { return d.Run; }));
+            y.domain([0, d3.max(data, function(d) { return Number(d.Speed); })]);
+
+            g.append("g")
+               .attr("transform", "translate(0," + sub_height + ")")
+               .call(d3.axisBottom(x))
+               .append("text")
+               .attr("fill", "#ffffff")
+               .attr("transform", "translate(" + sub_width / 2 + ", 26)")
+               .style("text-anchor", "middle")
+               .text("My X label");
+
+            g.append("g")
+               .call(d3.axisLeft(y))
+               .append("text")
+               .attr("fill", "#ffffff")
+               .attr("transform", "rotate(-90)")
+               //.attr("transform", "translate(" + -(sub_height / 2) + "," + -margin.left +")")
+               .attr("y", -margin.left)
+               .attr("x", -(sub_height / 2))
+               .attr("dy", "1em")
+               .attr("text-anchor", "middle")
+               .text("My Y label");
+
+            g.selectAll(".bar")
+               .data(data)
+               .enter()
+               .append("rect")
+               .on("mouseover", function(d) {
+                  d3.select("#chart_01_comment").text("My data: " + Number(d.Speed));
+               })
+               .attr("class", "bar")
+               .attr("x", function(d) { return x(d.Run); })
+               .attr("width", x.bandwidth())
+               .attr("y", function(d) { return sub_height; })
+               .attr("height", function(d) { return 0; })
+               .transition()
+               .duration(1000)
+               .delay(function(d, i) { return i * 100; })
+               .attr("y", function(d) { return y(Number(d.Speed)); })
+               .attr("height", function(d) { return sub_height - y(Number(d.Speed)); });
+         });
+      }
+   </script>
    <style>
 
       body {
-         background-color: black; color: white;
+         background-color: black;
+         color: white;
+      }
+
+      h1, h2, h3 {
+         font-family: Verdana, Geneva, Tahoma, sans-serif;
       }
 
       #chart_01 svg {
@@ -17,105 +95,17 @@
       }
 
       .bar {
-         fill: steelblue;
+         fill: darkgray;
       }
 
          .bar:hover {
-            fill: brown;
+            fill: darkorange;
          }
    </style>
 </head>
-<body>
+<body onload="govhack()">
    <h1>Big Orange Brain</h1>
    <h2>Chart 01 - Sample</h2>
    <div id="chart_01"></div>
-   <script>
-      var width = 600, height = 400;
-      var margin = {top: 20, right: 20, bottom: 30, left: 50};
-      var sub_width = width - margin.left - margin.right;
-      var sub_height = height - margin.top - margin.bottom;
-
-      var chart_01 = d3.select("#chart_01")
-         .append("svg")
-         .attr("width", width)
-         .attr("height", height);
-
-      var g = chart_01.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-      g.append("g")
-         .attr("transform", "translate(50, 5)")
-         .append("text")
-         .attr("id", "chart_01_comment")
-         .attr("class", "annotation")
-         .text("Hello");
-
-      var x = d3.scaleBand()
-         .rangeRound([0, sub_width])
-         .padding(0.1);
-
-      var y = d3.scaleLinear()
-         .rangeRound([sub_height, 0]);
-
-      d3.csv("brain.csv").then(function (data) {
-         x.domain(data.map(function (d) {
-            return d.Run;
-         }));
-         y.domain([0, d3.max(data, function (d) {
-            return Number(d.Speed);
-         })]);
-
-         g.append("g")
-            .attr("transform", "translate(0," + sub_height + ")")
-            .call(d3.axisBottom(x))
-            .append("text")
-            .attr("fill", "#ffffff")
-            .attr("transform", "translate(" + sub_width / 2 + ", 26)")
-            .style("text-anchor", "middle")
-            .text("My X label");
-
-         g.append("g")
-            .call(d3.axisLeft(y))
-            .append("text")
-            .attr("fill", "#ffffff")
-            .attr("transform", "rotate(-90)")
-            //.attr("transform", "translate(" + -(sub_height / 2) + "," + -margin.left +")")
-            .attr("y", -margin.left)
-            .attr("x", -(sub_height / 2))
-            .attr("dy", "1em")
-            .attr("text-anchor", "middle")
-            .text("My Y label");
-
-         g.selectAll(".bar")
-            .data(data)
-            .enter()
-            .append("rect")
-            .on("mouseover", function (d) {
-               d3.select("#chart_01_comment")
-                  .text("My data: " + Number(d.Speed));
-            })
-            .attr("class", "bar")
-            .attr("x", function(d) {
-               return x(d.Run);
-            })
-            .attr("width", x.bandwidth())
-            .attr("y", function(d) {
-               return sub_height;
-            })
-            .attr("height", function (d) {
-               return 0;
-            })
-            .transition()
-            .duration(1000)
-            .delay(function (d, i) {
-               return i * 100;
-            })
-            .attr("y", function (d) {
-               return y(Number(d.Speed));
-            })
-            .attr("height", function (d) {
-               return sub_height - y(Number(d.Speed));
-            });
-      });
-   </script>
 </body>
 </html>
