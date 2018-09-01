@@ -5,22 +5,23 @@
    <script>
       function govhack() {
          var width = 600, height = 400;
-         var margin = { top: 20, right: 20, bottom: 30, left: 50 };
+         var margin = { top: 50, right: 20, bottom: 30, left: 50 };
          var sub_width = width - margin.left - margin.right;
          var sub_height = height - margin.top - margin.bottom;
 
          var chart_01 = d3.select("#chart_01")
-            .append("svg")
-            .attr("width", width)
-            .attr("height", height);
+                          .append("svg")
+                          .attr("width", width)
+                          .attr("height", height);
 
-         var g = chart_01.append("g");//.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+         var g = chart_01.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
          g.append("text")
           .attr("x", width / 2)
           .attr("y", margin.top)
           .attr("id", "chart_01_title")
-          .attr("class", "annotation")
+            .attr("class", "annotation")
+            .attr("text-anchor", "middle")
           .text("My Plot Title");
 
          g.append("text")
@@ -67,7 +68,7 @@
                .enter()
                .append("rect")
                .on("mouseover", function(d) {
-                  d3.select("#chart_01_comment").text("My data: " + Number(d.Speed));
+                  d3.select("#chart_01_comment").text("Data value: " + Number(d.Speed));
                })
                .attr("class", "bar")
                .attr("x", function(d) { return x(d.Run); })
