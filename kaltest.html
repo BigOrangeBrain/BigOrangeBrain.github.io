@@ -21,7 +21,16 @@
    <h2>Map 01 - Sample</h2>
    <div id="my_div_map"></div>
    <script>
+var greenIcon = L.icon({
+    iconUrl: 'cup.png',
+    shadowUrl: 'cup.png',
 
+    iconSize:     [38, 95], // size of the icon
+    shadowSize:   [50, 64], // size of the shadow
+    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+    shadowAnchor: [4, 62],  // the same for the shadow
+    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+});
       var my_map = L.map('my_div_map').setView([-37.814, 144.96332], 10);
 
       L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
@@ -32,9 +41,9 @@
          id: 'mapbox.streets'
       }).addTo(my_map);
 
-      L.marker([-37.814, 144.96332]).addTo(my_map)
+      L.marker([-37.814, 144.96332], {icon: greenIcon}).addTo(my_map) 
          .bindPopup("<b>It's Melbourne!</b><br />I am a popup with a <a href='http://www.google.com'>link</a>.").openPopup();
-     
+         
       L.marker([-37.898998, 145.182999]).addTo(my_map)
          .bindPopup("<b>Home :)</b><br />I am a popup with a <a href='http://www.google.com'>link</a>.").openPopup();
    </script>
