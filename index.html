@@ -14,20 +14,21 @@
             .attr("width", width)
             .attr("height", height);
 
-         var g = chart_01.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+         var g = chart_01.append("g");//.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
          g.append("text")
-            .attr("x", width / 2)
-            .attr("y", margin.top)
-            .attr("id", "chart_01_title")
-            .attr("class", "annotation")
-            .text("My Plot Title");
+          .attr("x", width / 2)
+          .attr("y", margin.top)
+          .attr("id", "chart_01_title")
+          .attr("class", "annotation")
+          .text("My Plot Title");
 
-         g.attr("transform", "translate(50, 5)")
-            .append("text")
-            .attr("id", "chart_01_comment")
-            .attr("class", "annotation")
-            .text("Hello");
+         g.append("text")
+          .attr("x", margin.left)
+          .attr("y", margin.top)
+          .attr("id", "chart_01_comment")
+          .attr("class", "annotation")
+          .text("Data value: Waiting for mouse over");
 
          var x = d3.scaleBand()
             .rangeRound([0, sub_width])
