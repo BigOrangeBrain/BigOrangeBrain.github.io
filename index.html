@@ -6,7 +6,7 @@
    <script>
       function govhack() {
          var width = 600, height = 470;
-         var margin = { top: 70, right: 20, bottom: 30, left: 50 };
+         var margin = { top: 70, right: 20, bottom: 50, left: 50 };
          var sub_width = width - margin.left - margin.right;
          var sub_height = height - margin.top - margin.bottom;
 
@@ -16,7 +16,7 @@
                           .attr("height", height);
 
          chart_01.append("g")
-                 .attr("transform", "translate(" + width / 2 + "," + margin.top / 3 * 1 + ")")
+                 .attr("transform", "translate(" + width / 2 + ", " + margin.top / 3 * 1 + ")")
                  .append("text")
                  .attr("id", "chart_01_title")
                  .attr("class", "annotation")
@@ -24,7 +24,7 @@
                  .text("My Plot Title");
 
          chart_01.append("g")
-                 .attr("transform", "translate(" + width / 8 + "," + margin.top / 3 * 2  + ")")
+                 .attr("transform", "translate(" + width / 8 + ", " + margin.top / 3 * 2  + ")")
                  .append("text")
                  .attr("id", "chart_01_comment")
                  .attr("class", "annotation")
@@ -42,14 +42,14 @@
             x.domain(data.map(function(d) { return d.Run; }));
             y.domain([0, d3.max(data, function(d) { return Number(d.Speed); })]);
 
-            var g = chart_01.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+            var g = chart_01.append("g").attr("transform", "translate(" + margin.left + ", " + margin.top + ")");
 
             g.append("g")
                .attr("transform", "translate(0," + sub_height + ")")
                .call(d3.axisBottom(x))
                .append("text")
                .attr("class", "label")
-               .attr("transform", "translate(" + sub_width / 2 + ", 26)")
+               .attr("transform", "translate(" + sub_width / 2 + ", " + margin.bottom / 2 + ")")
                .style("text-anchor", "middle")
                .text("My X label");
 
