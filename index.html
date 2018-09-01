@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+   <title>GovHack 2018 - Big Orange Brain Entry</title>
    <script src="https://d3js.org/d3.v5.min.js"></script>
    <script>
       function govhack() {
@@ -14,11 +15,9 @@
                           .attr("width", width)
                           .attr("height", height);
 
-         var g = chart_01.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+         var g = chart_01.append("g").attr("transform", "translate(" + width / 2 + "," + margin.top / 2 + ")");
 
          g.append("text")
-          .attr("x", width / 2)
-          .attr("y", margin.top)
           .attr("id", "chart_01_title")
             .attr("class", "annotation")
             .attr("text-anchor", "middle")
@@ -30,6 +29,8 @@
           .attr("id", "chart_01_comment")
           .attr("class", "annotation")
           .text("Data value: Waiting for mouse over");
+
+         var g = chart_01.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
          var x = d3.scaleBand()
             .rangeRound([0, sub_width])
