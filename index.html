@@ -16,8 +16,14 @@
 
          var g = chart_01.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-         g.append("g")
-            .attr("transform", "translate(50, 5)")
+         g.append("text")
+            .attr("x", width / 2)
+            .attr("y", margin.top)
+            .attr("id", "chart_01_title")
+            .attr("class", "annotation")
+            .text("My Plot Title");
+
+         g.attr("transform", "translate(50, 5)")
             .append("text")
             .attr("id", "chart_01_comment")
             .attr("class", "annotation")
@@ -92,20 +98,22 @@
 
       .annotation {
          fill: white;
+         font: bold 12px sans-serif;
       }
 
       .bar {
          fill: darkgray;
       }
 
-         .bar:hover {
-            fill: darkorange;
-         }
+      .bar:hover {
+         fill: darkorange;
+      }
    </style>
 </head>
 <body onload="govhack()">
    <h1>Big Orange Brain</h1>
    <h2>Chart 01 - Sample</h2>
    <div id="chart_01"></div>
+   <div id="chart_02"></div>
 </body>
 </html>
