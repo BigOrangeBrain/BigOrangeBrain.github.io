@@ -16,7 +16,7 @@
                           .attr("height", height);
 
          chart_01.append("g")
-                 .attr("transform", "translate(" + width / 2 + "," + margin.top / 2 + ")")
+                 .attr("transform", "translate(" + width / 2 + "," + margin.top / 3 * 1 + ")")
                  .append("text")
                  .attr("id", "chart_01_title")
                  .attr("class", "annotation")
@@ -24,12 +24,12 @@
                  .text("My Plot Title");
 
          chart_01.append("g")
-                 .attr("transform", "translate(" + width / 8 + "," + margin.top + ")")
+                 .attr("transform", "translate(" + width / 8 + "," + margin.top 3 * 2  + ")")
                  .append("text")
                  .attr("id", "chart_01_comment")
                  .attr("class", "annotation")
                  .attr("text-anchor", "left")
-                 .text("Data value: Waiting for mouse over");
+                 .text("Data value: Waiting for mouse over event");
 
          d3.csv("brain.csv").then(function(data) {
             var x = d3.scaleBand()
