@@ -42,7 +42,7 @@
             x.domain(data.map(function(d) { return d.Run; }));
             y.domain([0, d3.max(data, function(d) { return Number(d.Speed); })]);
 
-            var g = chart_01.append("g").attr("transform", "translate(" + margin.left + ", " + margin.top + ")");
+            var g = chart.append("g").attr("transform", "translate(" + margin.left + ", " + margin.top + ")");
 
             g.append("g")
                .attr("transform", "translate(0," + sub_height + ")")
