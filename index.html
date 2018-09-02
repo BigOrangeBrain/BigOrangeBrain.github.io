@@ -66,7 +66,7 @@
                .enter()
                .append("rect")
                .on("mouseover", function(d) {
-                  d3.select(div_id + "_comment").text("Data value: " + Number(d.Speed));
+                  d3.select("#" + div_id + "_comment").text("Data value: " + Number(d.Speed));
                })
                .attr("class", "bar")
                .attr("x", function(d) { return x(d.Run); })
