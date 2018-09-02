@@ -57,7 +57,7 @@
                .call(d3.axisLeft(y))
                .append("text")
                .attr("class", "label")
-               .attr("transform", "translate(" + -margin.left / 2 + ", " + sub_height / 2 + ") rotate(-90)")
+               .attr("transform", "translate(" + -margin.left / 3 * 2 + ", " + sub_height / 2 + ") rotate(-90)")
                .attr("text-anchor", "middle")
                .text(y_axis_label);
 
