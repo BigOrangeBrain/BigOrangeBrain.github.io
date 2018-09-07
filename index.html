@@ -5,6 +5,13 @@
    <script src="https://d3js.org/d3.v5.min.js"></script>
    <script>
       function govhack() {
+
+         var highlight = d3.select("#highlight").append("g");
+
+         highlight.append("text")
+            .text("Baking")
+            .attr("#fill", "gold");
+
          alert("Hello")
       }
 
@@ -136,6 +143,9 @@
          </table>
       </center>
    </form>
+   <table>
+      <tr><td><div id="highlight"></div></td></tr>
+   </table>
    <table id="chart_01">
       <tr>
          <td>
