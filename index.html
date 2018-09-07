@@ -122,16 +122,19 @@
 <body onload="bar_plot('chart_01_plot', 'brain.csv', 'My Brain', 'Brain Size', 'Brain Speed'); bar_plot('chart_02_plot', 'cookie.csv', 'My Cookie', 'Cookie Taste', 'Cookie Crumble');">
    <h1>Big Orange Brain</h1>
    <form>
-      <table>
-         <tr>
-            <td>
-               <input id="query" type="text" size="100" />
-            </td>
-            <td>
-               <input id="action" type="button" value="Discover Markets" onclick="govhack();" />
-            </td>
-         </tr>
-      </table>
+      <center>
+         <table>
+            <tr>
+               <td>
+                  <input id="query" type="text" size="100" />
+               </td>
+               <td width="30"></td>
+               <td>
+                  <input id="action" type="button" value="Discover Markets" onclick="govhack();" />
+               </td>
+            </tr>
+         </table>
+      </center>
    </form>
    <table id="chart_01">
       <tr>
