@@ -15,9 +15,6 @@
          highlight.append("text")
             .text(" Mining ")
             .attr("class", "trend_down");
-
-
-         alert("Hello")
       }
 
       function bar_plot(div_id, data_file, title_label, x_axis_label, y_axis_label) {
@@ -115,18 +112,21 @@
 
       .trend_up {
          fill: forestgreen;
+         font: bold 14px sans-serif;
       }
 
       .trend_down {
-         fill: darkred;
+         color: darkred;
+         font: bold 10px sans-serif;
       }
 
       .trend_stable {
-         fill: grey;
+         color: grey;
+         font: normal 12px sans-serif;
       }
 
       .annotation {
-         fill: white;
+         color: white;
          font: bold 12px sans-serif;
       }
 
