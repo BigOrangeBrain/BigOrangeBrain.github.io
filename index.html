@@ -9,8 +9,13 @@
          var highlight = d3.select("#highlight").append("g");
 
          highlight.append("text")
-            .text("Baking")
-            .attr("#fill", "gold");
+            .text(" Baking ")
+            .attr("class", "trend_up");
+
+         highlight.append("text")
+            .text(" Mining ")
+            .attr("class", "trend_down");
+
 
          alert("Hello")
       }
@@ -106,6 +111,18 @@
 
       h1 {
          color: orangered;
+      }
+
+      .trend_up {
+         fill: forestgreen;
+      }
+
+      .trend_down {
+         fill: darkred;
+      }
+
+      .trend_stable {
+         fill: grey;
       }
 
       .annotation {
