@@ -4,6 +4,10 @@
    <title>GovHack 2018 - Big Orange Brain Entry</title>
    <script src="https://d3js.org/d3.v5.min.js"></script>
    <script>
+      function govhack() {
+         alert("Hello")
+      }
+
       function bar_plot(div_id, data_file, title_label, x_axis_label, y_axis_label) {
          var width = 600, height = 470;
          var margin = { top: 70, right: 20, bottom: 50, left: 50 };
@@ -97,16 +101,6 @@
          color: orangered;
       }
 
-      #chart_01_plot {
-         float: left;
-         clear: both;
-      }
-
-      #chart_02_plot {
-         float: right;
-         clear: both;
-      }
-
       .annotation {
          fill: white;
          font: bold 12px sans-serif;
@@ -127,6 +121,7 @@
 </head>
 <body onload="bar_plot('chart_01_plot', 'brain.csv', 'My Brain', 'Brain Size', 'Brain Speed'); bar_plot('chart_02_plot', 'cookie.csv', 'My Cookie', 'Cookie Taste', 'Cookie Crumble');">
    <h1>Big Orange Brain</h1>
+   <form><input id="query" type="text" size="100" /><input id="action" type="button" onclick="govhack();" /></form>
    <table id="chart_01">
       <tr>
          <td>
