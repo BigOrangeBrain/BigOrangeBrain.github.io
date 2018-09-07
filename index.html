@@ -6,14 +6,16 @@
    <script>
       function govhack() {
 
-         var highlight = d3.select("#highlight").append("g");
+         var highlight = d3.select("#highlight");
 
-         highlight.append("text")
-            .text(" Baking ")
+         var q = d3.select("#query").text().split(", ");
+
+         highlight.append("span")
+            .text(q[0])
             .attr("class", "trend_up");
 
-         highlight.append("text")
-            .text(" Mining ")
+         highlight.append("span")
+            .text(q[1])
             .attr("class", "trend_down");
       }
 
@@ -164,12 +166,17 @@
                   <input id="action" type="button" value="Discover Markets" onclick="govhack();" />
                </td>
             </tr>
+            <tr>
+               <td>
+                  <div id="highlight"></div>
+               </td>
+               <td></td>
+               <td></td>
+            </tr>
          </table>
       </center>
    </form>
-   <table>
-      <tr><td><div id="highlight"></div></td></tr>
-   </table>
+
    <table id="chart_01">
       <tr>
          <td>
