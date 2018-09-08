@@ -3,22 +3,48 @@
 <head>
    <title>GovHack 2018 - Big Orange Brain Entry</title>
    <script src="https://d3js.org/d3.v5.min.js"></script>
+   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
+         integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+         crossorigin="" />
+   <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
+           integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+           crossorigin=""></script>
    <script>
       function govhack() {
 
          var highlight = d3.select("#highlight");
+         d3.select("#outlook").attr("class", "hide");
 
-         var q = d3.select("#query").text().split(", ");
+         var q = d3.select("#query").property("value").split(",");
 
-         alert(q)
+         if (q.length > 0 && d3.select("#query").property("value").length > 0) {
+            var outlook = d3.select("#outlook").attr("class", "show");
 
-         highlight.append("span")
-            .text(q[0])
-            .attr("class", "trend_up");
+            d3.select("#highlight").html("");
 
-         highlight.append("span")
-            .text(q[1])
-            .attr("class", "trend_down");
+            highlight.append("span")
+               .text(q[0])
+               .attr("class", "trend_up");
+
+            highlight.append("span")
+               .text(q[1])
+               .attr("class", "trend_down");
+         }
+
+         return false;
+      }
+
+      function govhackmap() {
+
+         var my_map = L.map('my_div_map').setView([-37.814, 144.96332], 4);
+
+         L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+            maxZoom: 18,
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+               '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+               'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+            id: 'mapbox.streets'
+         }).addTo(my_map);
       }
 
       function bar_plot(div_id, data_file, title_label, x_axis_label, y_axis_label) {
@@ -35,6 +61,7 @@
          chart.append("g")
             .attr("transform", "translate(" + width / 2 + ", " + margin.top / 3 * 1 + ")")
             .append("text")
+
             .attr("id", div_id + "_title")
             .attr("class", "annotation")
             .attr("text-anchor", "middle")
@@ -115,18 +142,30 @@
       }
 
       .trend_up {
-         fill: forestgreen;
-         font: bold 20x sans-serif;
+         color: forestgreen;
+         font: bold 20px sans-serif;
+         text-transform: capitalize;
       }
 
       .trend_down {
-         color: darkred;
-         font: bold 16px sans-serif;
+         color: red;
+         font: bold 18px sans-serif;
+         text-transform: capitalize;
       }
 
       .trend_stable {
          color: grey;
          font: normal 18px sans-serif;
+         text-transform: capitalize;
+      }
+
+      .show {
+         display: normal;
+      }
+
+      .hide {
+         display: none;
+
       }
 
       .annotation {
@@ -145,13 +184,18 @@
          .bar:hover {
             fill: orangered;
          }
+
+      #my_div_map {
+         height: 600px;
+         width: 800px;
+      }
    </style>
 </head>
-<body onload="bar_plot('chart_01_plot', 'brain.csv', 'My Brain', 'Brain Size', 'Brain Speed'); bar_plot('chart_02_plot', 'cookie.csv', 'My Cookie', 'Cookie Taste', 'Cookie Crumble');">
+<body onload="govhackmap();">
    <h1>Project: Big Orange Brain</h1>
-   <form>
+   <form onsubmit="return govhack();">
       <center>
-         <table>
+         <table border="0">
             <tr>
                <td>
                   Enter your top skills:
@@ -170,7 +214,28 @@
             </tr>
             <tr>
                <td>
+                  <span id="outlook" class="hide">Skill forecast:</span>
+               </td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <td>
                   <div id="highlight"></div>
+               </td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <td>
+                  <br /><br /><br />Market Map:
+               </td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <td>
+                  <div class="hides" id="my_div_map" />
                </td>
                <td></td>
                <td></td>
@@ -178,32 +243,5 @@
          </table>
       </center>
    </form>
-
-   <table id="chart_01">
-      <tr>
-         <td>
-            <div id="chart_01_plot"></div>
-         </td>
-         <td>
-            <div id="chart_01_description">
-               <h2>Chart 1 - Sample</h2>
-               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            </div>
-         </td>
-      </tr>
-   </table>
-   <table id="chart_02">
-      <tr>
-         <td>
-            <div id="chart_02_plot"></div>
-         </td>
-         <td>
-            <div id="chart_02_description">
-               <h2>Chart 2 - Sample</h2>
-               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            </div>
-         </td>
-      </tr>
-   </table>
 </body>
 </html>
