@@ -10,6 +10,30 @@
            integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
            crossorigin=""></script>
    <script>
+      var my_map;
+
+      var upr = L.icon({
+         iconUrl: 'up.png',
+         shadowUrl: '',
+
+         iconSize: [38, 38], // size of the icon
+         shadowSize: [0, 0], // size of the shadow
+         iconAnchor: [19, 19], // point of the icon which will correspond to marker's location
+         shadowAnchor: [0, 0],  // the same for the shadow
+         popupAnchor: [0, 0] // point from which the popup should open relative to the iconAnchor
+      });
+
+      var dwn = L.icon({
+         iconUrl: 'dwn.png',
+         shadowUrl: '',
+
+         iconSize: [38, 38], // size of the icon
+         shadowSize: [0, 0], // size of the shadow
+         iconAnchor: [19, 19], // point of the icon which will correspond to marker's location
+         shadowAnchor: [0, 0],  // the same for the shadow
+         popupAnchor: [0, 0] // point from which the popup should open relative to the iconAnchor
+      });
+
       function govhack() {
 
          var highlight = d3.select("#highlight");
@@ -21,21 +45,49 @@
 
             var edu = "teacher, professor, school, tuition, childcare, internships";
             var tra = "builder, carpentry, carpenter, plumbing, plumber";
+            var pwr = "power, gas";
 
             d3.select("#highlight").html("");
 
             for (var i = 0; i < q.length; ++i) {
 
-               if (edu.includes(q[i])) {
+               if (edu.includes(q[i].trim())) {
 
                   highlight.append("span")
                      .text(q[i])
                      .attr("class", "trend_up");
-               }
-               else {
-                  highlight.append("span")
-                     .text(q[i])
-                     .attr("class", "trend_stable");
+
+                  L.marker([-35.419485, 149.066547], { icon: upr }).addTo(my_map).bindPopup("<b>ACT</b><br />Education and Training <br />Currently: 20 thousand people<br />Expected: 10% increase by 2022<br /><a href='https://000'>Job Start</a>.");
+                  L.marker([-31.984049, 146.436834], { icon: upr }).addTo(my_map).bindPopup("<b>New South Wales</b><br />Education and Training <br />Currently: 307 thousand people<br />Expected: 13% increase by 2022<br /><a href='https://000'>Job Start</a>.");
+                  L.marker([-20.557384, 132.996338], { icon: upr }).addTo(my_map).bindPopup("<b>Northern Territory</b><br />Education and Training <br />Currently: 14 thousand people<br />Expected: 9% increase by 2022<br /><a href='https://000'>Job Start</a>.");
+                  L.marker([-23.745724, 144.797674], { icon: upr }).addTo(my_map).bindPopup("<b>Queensland</b><br />Education and Training <br />Currently: 178 thousand people<br />Expected: 12% increase by 2022<br /><a href='https://000'>Job Start</a>.");
+                  L.marker([-29.244379, 134.406945], { icon: upr }).addTo(my_map).bindPopup("<b>South Australia</b><br />Education and Training <br />Currently: 63 thousand people<br />Expected: 9% increase by 2022<br /><a href='https://000'>Job Start</a>.");
+                  L.marker([-42.216121, 146.443303], { icon: upr }).addTo(my_map).bindPopup("<b>Tasmania</b><br />Education and Training <br />Currently: 18 thousand people<br />Expected: 8% increase by 2022<br /><a href='https://000'>Job Start</a>.");
+                  L.marker([-36.762788, 143.910077], { icon: upr }).addTo(my_map).bindPopup("<b>Victoria</b><br />Education and Training <br />Currently: 267 thousand people<br />Expected: 13% increase by 2022<br /><a href='https://000'>Job Start</a>.");
+                  L.marker([-25.661583, 120.783224], { icon: upr }).addTo(my_map).bindPopup("<b>Western Australia</b><br />Education and Training <br />Currently: 104 thousand people<br />Expected: 9% increase by 2022<br /><a href='https://000'>Job Start</a>.");
+
+               } else {
+                  
+                  if (pwr.includes(q[i].trim())) {
+                     
+                     highlight.append("span")
+                        .text(q[i])
+                        .attr("class", "trend_down");
+
+                     L.marker([-23.745724, 144.797674], { icon: dwn }).addTo(my_map).bindPopup("<b>Queensland</b><br />Electricity, Gas, Water and Waste Services <br />Currently: 25 thousand people<br />Expected: 9% decrease by 2022<br /><a href='https://000'>Job Start</a>.");
+                     L.marker([-25.661583, 120.783224], { icon: dwn }).addTo(my_map).bindPopup("<b>Western Australia</b><br />Electricity, Gas, Water and Waste Services <br />Currently: 18 thousand people<br />Expected: 9% decrease by 2022<br /><a href='https://000'>Job Start</a>.");
+                     L.marker([-31.984049, 146.436834], { icon: dwn }).addTo(my_map).bindPopup("<b>New South Wales</b><br />Electricity, Gas, Water and Waste Services <br />Currently: 35 thousand people<br />Expected: 8% decrease by 2022<br /><a href='https://000'>Job Start</a>.");
+                     L.marker([-36.762788, 143.910077], { icon: dwn }).addTo(my_map).bindPopup("<b>Victoria</b><br />Electricity, Gas, Water and Waste Services <br />Currently: 32 thousand people<br />Expected: 8% decrease by 2022<br /><a href='https://000'>Job Start</a>.");
+                     L.marker([-35.419485, 149.066547], { icon: dwn }).addTo(my_map).bindPopup("<b>ACT</b><br />Electricity, Gas, Water and Waste Services <br />Currently: 1 thousand people<br />Expected: 6% decrease by 2022<br /><a href='https://000'>Job Start</a>.");
+                     L.marker([-42.216121, 146.443303], { icon: dwn }).addTo(my_map).bindPopup("<b>Tasmania</b><br />Electricity, Gas, Water and Waste Services <br />Currently: 4 thousand people<br />Expected: 5% decrease by 2022<br /><a href='https://000'>Job Start</a>.");
+                     L.marker([-29.244379, 134.406945], { icon: upr }).addTo(my_map).bindPopup("<b>South Australia</b><br />Electricity, Gas, Water and Waste Services <br />Currently: 11 thousand people<br />Expected: 2% increase by 2022<br /><a href='https://000'>Job Start</a>.");
+                     L.marker([-20.557384, 132.996338], { icon: upr }).addTo(my_map).bindPopup("<b>Northern Territory</b><br />Electricity, Gas, Water and Waste Services <br />Currently: 3 thousand people<br />Expected: 7% increase by 2022<br /><a href='https://000'>Job Start</a>.");
+
+                  } else {
+                     highlight.append("span")
+                        .text(q[i])
+                        .attr("class", "trend_down");
+                  }
                }
             }
 
@@ -47,7 +99,7 @@
 
       function govhackmap() {
 
-         var my_map = L.map('my_div_map').setView([-24.25, 133.416667], 4);
+         my_map = L.map('my_div_map').setView([-24.25, 133.416667], 4);
 
          L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
             maxZoom: 18,
@@ -139,9 +191,9 @@
    <style>
 
       body {
-         background-color: black;
+         background-color: white;
          font-family: Verdana, Geneva, Tahoma, sans-serif;
-         color: white;
+         color: black;
       }
 
       h1, h2, h3 {
@@ -197,6 +249,28 @@
             fill: orangered;
          }
 
+      #query {
+         margin: 15px 5px;
+         padding: 10px 15px 12px;
+         border-radius: 9px;
+         background: #ddd;
+      }
+
+      #action {
+         margin: 15px 5px;
+         padding: 10px 15px 12px;
+         border-radius: 9px;
+         box-shadow: inset 0 -1px 0 1px rgba(0,0,0,.1), inset 0 -10px 20px rgba(0,0,0,.1);
+         cursor: pointer;
+         color: #fff;
+         text-shadow: 0 -1px 0 rgba(0,0,0,.2);
+         background: #59d;
+      }
+
+         #action:hover {
+            background: #48c;
+         }
+
       #my_div_map {
          height: 600px;
          width: 800px;
@@ -211,20 +285,31 @@
          margin-top: 20px;
       }
 
+      #outlook {
+         margin-top: 20px;
+         font-weight: bold;
+      }
+
+      #skills {
+         margin-top: 20px;
+         font-weight: bold;
+      }
+
       #maptitle {
          margin-top: 20px;
+         font-weight: bold;
       }
    </style>
 </head>
 <body onload="govhackmap();">
    <h1>Project: Big Orange Brain</h1>
-   <div id="usage">Use this app to search your top skills to discover the your most employable market.</div>
+   <div id="usage">Use this app to search your unique skill set to discover your most employable market and future growing industry.</div>
    <form onsubmit="return govhack();">
       <center>
          <table border="0">
             <tr>
                <td>
-                  Enter your top skills:
+                  <div id="skills">Enter your top skills:</div>
                </td>
                <td></td>
                <td></td>
