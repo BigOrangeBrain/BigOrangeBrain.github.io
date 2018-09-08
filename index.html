@@ -15,20 +15,31 @@
          var highlight = d3.select("#highlight");
          d3.select("#outlook").attr("class", "hide");
 
-         var q = d3.select("#query").property("value").split(",");
+         var q = d3.select("#query").property("value").toLowerCase().split(",");
 
          if (q.length > 0 && d3.select("#query").property("value").length > 0) {
-            var outlook = d3.select("#outlook").attr("class", "show");
+
+            var edu = "teacher, professor, school, tuition, childcare, internships";
+            var tra = "builder, carpentry, carpenter, plumbing, plumber";
 
             d3.select("#highlight").html("");
 
-            highlight.append("span")
-               .text(q[0])
-               .attr("class", "trend_up");
+            for (var i = 0; i < q.length; ++i) {
 
-            highlight.append("span")
-               .text(q[1])
-               .attr("class", "trend_down");
+               if (edu.includes(q[i])) {
+
+                  highlight.append("span")
+                     .text(q[i])
+                     .attr("class", "trend_up");
+               }
+               else {
+                  highlight.append("span")
+                     .text(q[i])
+                     .attr("class", "trend_stable");
+               }
+            }
+
+            var outlook = d3.select("#outlook").attr("class", "show");
          }
 
          return false;
@@ -36,7 +47,7 @@
 
       function govhackmap() {
 
-         var my_map = L.map('my_div_map').setView([-37.814, 144.96332], 4);
+         var my_map = L.map('my_div_map').setView([-24.25, 133.416667], 4);
 
          L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
             maxZoom: 18,
@@ -139,6 +150,7 @@
 
       h1 {
          color: orangered;
+         margin-left: 60px;
       }
 
       .trend_up {
@@ -189,10 +201,24 @@
          height: 600px;
          width: 800px;
       }
+
+      #usage {
+         margin-left: 60px;
+         margin-bottom: 20px;
+      }
+
+      #about {
+         margin-top: 20px;
+      }
+
+      #maptitle {
+         margin-top: 20px;
+      }
    </style>
 </head>
 <body onload="govhackmap();">
    <h1>Project: Big Orange Brain</h1>
+   <div id="usage">Use this app to search your top skills to discover the your most employable market.</div>
    <form onsubmit="return govhack();">
       <center>
          <table border="0">
@@ -205,7 +231,7 @@
             </tr>
             <tr>
                <td>
-                  <input id="query" type="text" size="100" />
+                  <input id="query" type="text" size="80" />
                </td>
                <td width="30"></td>
                <td>
@@ -227,18 +253,13 @@
                <td></td>
             </tr>
             <tr>
-               <td>
-                  <br /><br /><br />Market Map:
-               </td>
-               <td></td>
-               <td></td>
+               <td colspan="3"><div id="maptitle">Market Forecast Map:</div></td>
             </tr>
             <tr>
-               <td>
-                  <div class="hides" id="my_div_map" />
-               </td>
-               <td></td>
-               <td></td>
+               <td colspan="3"><div class="hides" id="my_div_map" /></td>
+            </tr>
+            <tr>
+               <td colspan="3"><div id="about">About and usage guide.</div></td>
             </tr>
          </table>
       </center>
