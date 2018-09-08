@@ -39,9 +39,9 @@
          var highlight = d3.select("#highlight");
          d3.select("#outlook").attr("class", "hide");
 
-         var q = d3.select("#query").property("value").toLowerCase().split(",");
+         var q = d3.select("#qquery").property("value").toLowerCase().split(",");
 
-         if (q.length > 0 && d3.select("#query").property("value").length > 0) {
+         if (q.length > 0 && d3.select("#qquery").property("value").length > 0) {
 
             var edu = "teacher, professor, school, tuition, childcare, internships";
             var tra = "builder, carpentry, carpenter, plumbing, plumber";
@@ -249,7 +249,7 @@
             fill: orangered;
          }
 
-      #query {
+      #qquery {
          margin: 15px 5px;
          padding: 10px 15px 12px;
          border-radius: 9px;
@@ -302,8 +302,8 @@
    </style>
 </head>
 <body onload="govhackmap();">
-   <h1>Project: Big Orange Brain</h1>
-   <div id="usage">Use this app to search your unique skill set to discover your most employable market and future growing industry.</div>
+   <h1>Secure your future</h1>
+   <div id="usage">Use this app to search your unique skill set to discover your most employable market and future growth industry.</div>
    <form onsubmit="return govhack();">
       <center>
          <table border="0">
@@ -316,7 +316,7 @@
             </tr>
             <tr>
                <td>
-                  <input id="query" type="text" size="80" />
+                  <input id="qquery" type="text" size="80" />
                </td>
                <td width="30"></td>
                <td>
